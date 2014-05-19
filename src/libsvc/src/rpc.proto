@@ -1,0 +1,32 @@
+package rpcproto;
+
+enum erpc {
+	REQUESST = 0;
+	PUSH = 1;
+	RESPONSE = 2;
+}
+
+message rpc {
+	required erpc type = 1;
+    optional request req = 2;
+    optional response rep = 3;
+}
+
+message request {
+	required string name = 1;
+    required int32 id = 2;
+	required int32 opcode = 3;
+    optional bytes msg = 4;
+}
+
+message error {
+    required int32 code = 1;
+    optional string text = 2;
+}
+
+message response {
+    required string name = 1;
+    required int32 id = 2;
+    optional bytes msg = 3;
+    optional error error = 4;
+}
